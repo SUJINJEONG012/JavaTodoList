@@ -9,14 +9,21 @@ import com.example.demo.repository.ToDoRepository;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RequiredArgsConstructor
 @Service
 public class ToDoService {
-	
+
 	private final ToDoRepository todoRepository;
-	
-	public List<ToDoEntity> getList(){
+
+	public List<ToDoEntity> getList() {
 		return this.todoRepository.findAll();
 	}
+
+	public void create(String content) {
+		ToDoEntity todoEntity = new ToDoEntity();
+		todoEntity.setContent(content);
+		todoEntity.setCompleted(false);
+		this.todoRepository.save(todoEntity);
+	}
+
 }
