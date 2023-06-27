@@ -36,4 +36,12 @@ public class ToDoService {
 		this.todoRepository.delete(todoEntity);
 	}
 
+	@Transactional
+	public void update(Integer id, String content) {
+		ToDoEntity todoEntity = todoRepository.findById(id)
+				.orElseThrow(()-> new IllegalArgumentException("해당 아이디가 없습니다. id= " + id));
+		todoEntity.setContent(content);
+		this.todoRepository.save(todoEntity);
+	}
+
 }
