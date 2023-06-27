@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.ToDoEntity;
@@ -24,6 +26,14 @@ public class ToDoService {
 		todoEntity.setContent(content);
 		todoEntity.setCompleted(false);
 		this.todoRepository.save(todoEntity);
+	}
+	
+	@Transactional
+	public void delete(Integer id) {
+		ToDoEntity todoEntity = todoRepository.findById(id)
+				.orElseThrow(()-> new IllegalArgumentException("해당 아이디가 없습니다.id= " + id));
+		
+		this.todoRepository.delete(todoEntity);
 	}
 
 }
