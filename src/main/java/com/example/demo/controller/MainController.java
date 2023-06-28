@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.ToDoEntity;
 import com.example.demo.service.ToDoService;
 
-import lombok.RequiredArgsConstructor;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class MainController {
@@ -27,6 +30,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String main(Model model) {
+		log.info("히햏 !@@@ :: 제대로 찍히는지 ");
 		List<ToDoEntity> todoEntityList = this.todoService.getList();
 		model.addAttribute("todoEntityList",todoEntityList);
 		return "todolist";
