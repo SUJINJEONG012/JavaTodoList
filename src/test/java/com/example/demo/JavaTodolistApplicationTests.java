@@ -16,6 +16,7 @@ class JavaTodolistApplicationTests {
 	
 	@Autowired
 	private ApplicationContext context;
+	
 	@Autowired
 	private SqlSessionFactory sessionFactory;
 	
